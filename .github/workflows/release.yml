@@ -48,9 +48,7 @@ jobs:
 
       - name: Get version
         id: get_version
-        run: |
-          VERSION=$(grep -oP '(?<="version": ")[^"]*' version.json)
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+        run: echo "VERSION=$(jq -r '.version' version.json)" >> $GITHUB_ENV
 
       - name: Build release package
         run: |
