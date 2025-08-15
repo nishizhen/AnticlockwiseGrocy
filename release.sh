@@ -5,7 +5,7 @@ set -e
 
 # --- Config ---
 # Get the version from version.json
-VERSION=$(grep -o '"version": "[^"]*' version.json | grep -o '[^"]*$')
+VERSION=$(jq -r '.version' version.json)
 RELEASE_NAME="grocy"
 RELEASE_FILE_NAME="${RELEASE_NAME}_${VERSION}.zip"
 RELEASE_BUILD_DIR=".release"
@@ -67,3 +67,8 @@ rm -rf ${RELEASE_BUILD_DIR}
 
 # ---------------------------------------------------------------------------------------------------------
 echo "✅ Release successfully created: ${RELEASE_FILE_NAME}"
+
+# Set output for GitHub Actions
+# This is the old way, a new way is needed for new runners.
+# echo "::set-output name=artifact_path::${RELEASE_FILE_NAME}"
+echo "artifact_path=${RELEASE_FILE_NAME}" >> $GITHUB_OUTPUT
