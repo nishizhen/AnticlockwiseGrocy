@@ -6,6 +6,13 @@ set -e
 # --- Config ---
 # Get the version from version.json
 VERSION=$(jq -r '.version' version.json)
+
+# Validate Version
+if [ -z "$VERSION" ] || [ "$VERSION" == "null" ]; then
+    echo "Error: Version could not be determined from version.json. Got '$VERSION'."
+    exit 1
+fi
+
 RELEASE_NAME="grocy"
 RELEASE_FILE_NAME="${RELEASE_NAME}_${VERSION}.zip"
 RELEASE_BUILD_DIR=".release"
