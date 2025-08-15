@@ -46,19 +46,6 @@ jobs:
       - name: Install Node.js dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Debug version.json
-        run: |
-          echo "--- Checking file existence and permissions ---"
-          ls -l version.json
-          echo "--- Checking file encoding ---"
-          file version.json
-          echo "--- Displaying file content (cat) ---"
-          cat version.json
-          echo "--- Displaying file content (hex) ---"
-          xxd version.json || od -c version.json
-          echo "--- Running jq directly ---"
-          jq -r '.version' version.json
-
       - name: Build release package
         id: build
         run: |

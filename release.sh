@@ -5,7 +5,7 @@ set -e
 
 # --- Config ---
 # Get the version from version.json
-VERSION=$(jq -r '.version' version.json)
+VERSION=$(jq -r '.Version' version.json)
 
 # Validate Version
 if [ -z "$VERSION" ] || [ "$VERSION" == "null" ]; then
