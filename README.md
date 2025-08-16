@@ -1,6 +1,6 @@
 <div align="center">
 <img alt="Logo" height="50" src="https://raw.githubusercontent.com/grocy/grocy/master/public/img/logo.svg?sanitize=true" />
-<h1>AnticlockwiseGrocy - 逆时针</h1>
+<h1>AnticlockwiseGrocy</h1>
 <h3>一个专为中国家庭打造的家庭物品管理神器</h3>
 <em><h4>让我们一起，有效管理库存，利用资源，实现断舍离，减少浪费，聚焦重点。</h4></em>
 </div>
