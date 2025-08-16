@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
 
 jobs:
   build-and-push:
@@ -31,12 +28,10 @@ jobs:
         with:
           images: nishizhen/anticlockwisegrocy
           tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=raw,value=latest,enable=${{ github.ref == github.event.repository.default_branch }}
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=semver,pattern={{version}},value=v${{ steps.version.outputs.tag }}
+            type=semver,pattern={{major}}.{{minor}},value=v${{ steps.version.outputs.tag }}
+            type=semver,pattern={{major}},value=v${{ steps.version.outputs.tag }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
