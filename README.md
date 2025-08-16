@@ -127,8 +127,7 @@
 
 本项目是开源的，我们欢迎任何形式的贡献，无论是代码、文档、还是一个好的想法。
 
-*   **问题反馈与功能建议**：请通过 [Issue Tracker](https://github.com/grocy/grocy/issues/new/choose) 告诉我们。
-*   **参与翻译**：如果您想帮助我们改进翻译，可以访问 [Transifex](https://explore.transifex.com/grocy/grocy/)。
+*   **问题反馈与功能建议**：请通过 [Issue Tracker](https://github.com/nishizhen/AnticlockwiseGrocy/issues/new/choose) 告诉我们。
 
 ---
 
