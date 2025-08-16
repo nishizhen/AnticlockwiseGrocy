@@ -295,7 +295,7 @@
 						<li>
 							<a class="nav-link discrete-link"
 								href="{{ $U('/stockreports/lastused') }}">
-								<span class="nav-link-text">{{ $__t('Last Used') }}</span>
+								<span class="nav-link-text">{{ $__t('Last Used Report') }}</span>
 							</a>
 						</li>
 					</ul>

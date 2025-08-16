@@ -2,11 +2,17 @@
 
 namespace Grocy\Controllers;
 
+use DI\Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 class StockReportsController extends BaseController
 {
+	public function __construct(Container $container)
+	{
+		parent::__construct($container);
+	}
+
 	public function Spendings(Request $request, Response $response, array $args)
 	{
 		$where = "pph.transaction_type != 'self-production'";
