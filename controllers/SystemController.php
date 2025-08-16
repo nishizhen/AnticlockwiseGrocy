@@ -29,7 +29,7 @@ class SystemController extends BaseController
 		$databaseMigrationService = DatabaseMigrationService::getInstance();
 		$databaseMigrationService->MigrateDatabase();
 
-		if (GROCY_MODE === 'dev' || GROCY_MODE === 'demo' || GROCY_MODE === 'prerelease')
+		if ((GROCY_MODE === 'dev' || GROCY_MODE === 'demo' || GROCY_MODE === 'prerelease') && $this->getDatabaseService()->ExecuteDbQuery('SELECT COUNT(*) FROM users')->fetchColumn() == 0)
 		{
 			$demoDataGeneratorService = DemoDataGeneratorService::getInstance();
 			$demoDataGeneratorService->PopulateDemoData(isset($request->getQueryParams()['nodemodata']));

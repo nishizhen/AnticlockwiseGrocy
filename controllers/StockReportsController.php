@@ -2,17 +2,11 @@
 
 namespace Grocy\Controllers;
 
-use DI\Container;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 class StockReportsController extends BaseController
 {
-	public function __construct(Container $container)
-	{
-		parent::__construct($container);
-	}
-
 	public function Spendings(Request $request, Response $response, array $args)
 	{
 		$where = "pph.transaction_type != 'self-production'";
@@ -111,21 +105,21 @@ class StockReportsController extends BaseController
 
 	public function LastUsed(Request $request, Response $response, array $args)
 	{
-		// $sql = "
-		// SELECT
-		// 	p.id,
-		// 	p.name,
-		// 	sc.amount,
-		// 	MAX(sl.used_date) as last_used
-		// FROM products p
-		// JOIN stock_current sc ON p.id = sc.product_id
-		// LEFT JOIN stock_log sl ON p.id = sl.product_id AND sl.transaction_type = 'consume'
-		// GROUP BY p.id, p.name, sc.amount
-		// ORDER BY last_used IS NULL DESC, last_used ASC
-		// ";
+		$sql = "
+		SELECT
+			p.id,
+			p.name,
+			sc.amount,
+			MAX(sl.used_date) as last_used
+		FROM products p
+		JOIN stock_current sc ON p.id = sc.product_id
+		LEFT JOIN stock_log sl ON p.id = sl.product_id AND sl.transaction_type = 'consume'
+		GROUP BY p.id, p.name, sc.amount
+		ORDER BY last_used IS NULL DESC, last_used ASC
+		";
 
 		return $this->renderPage($response, 'stockreportlastused', [
-			'products' => []
+			'products' => $this->getDatabaseService()->ExecuteDbQuery($sql)->fetchAll(\PDO::FETCH_OBJ)
 		]);
 	}
 }

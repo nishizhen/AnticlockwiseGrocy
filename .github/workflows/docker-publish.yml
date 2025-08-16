@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
 
 jobs:
   build-and-push:
@@ -32,7 +29,6 @@ jobs:
           images: nishizhen/anticlockwisegrocy
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
-            type=raw,value=pr-{{event.number}},enable={{is_pull_request}}
             type=semver,pattern={{version}},value=v${{ steps.version.outputs.tag }}
             type=semver,pattern={{major}}.{{minor}},value=v${{ steps.version.outputs.tag }}
             type=semver,pattern={{major}},value=v${{ steps.version.outputs.tag }}
